@@ -440,7 +440,15 @@ function toStringList(arr) {
  *    ]
  */
 function sortCitiesArray(arr) {
-  arr.sort((a, b) => a.country > b.country ? 1 : -1);
+  arr.sort((a, b) => {
+    if (a.country > b.country) {
+      return 1;
+    }
+    if (b.country > a.country) {
+      return -1;
+    }
+    return 0;
+  });
   arr.sort((a, b) => {
     if (a.country === b.country) {
       return a.city > b.city ? 1 : -1;
@@ -473,7 +481,12 @@ function getIdentityMatrix(n) {
     length: n,
   }, (el, index) => Array.from({
     length: n,
-  }, (element, indexTwo) => index === indexTwo ? 1 : 0));
+  }, (element, indexTwo) => {
+    if (index === indexTwo) {
+      return 1;
+    }
+    return 0;
+  }));
 }
 
 /**
